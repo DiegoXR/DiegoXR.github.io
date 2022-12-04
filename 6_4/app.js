@@ -12,46 +12,35 @@ import { XRControllerModelFactory } from '/libs/three/jsm/XRControllerModelFacto
 
 class App{
 	constructor(){
-		// create a new div element and add it to the body
-        const container = document.createElement( 'div' );
+		const container = document.createElement( 'div' );
 		document.body.appendChild( container );
 
-		// Create variable that contains the path for assets
-        this.assetsPath = '/assets/';
+		this.assetsPath = '/assets/';
         
-        // Create Scene
-        this.scene = new THREE.Scene();
-
-        // Create Camera
 		this.camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 500 );
 		this.camera.position.set( 0, 1.6, 0 );
         
-        // Create Dolly and dummy cam
         this.dolly = new THREE.Object3D(  );
         this.dolly.position.set(0, 0, 10);
         this.dolly.add( this.camera );
         this.dummyCam = new THREE.Object3D();
-        this.camera.add( this.dummyCam );		
+        this.camera.add( this.dummyCam );
+        
+		this.scene = new THREE.Scene();
         this.scene.add( this.dolly );
         
-        // Create Ambient Light
 		const ambient = new THREE.HemisphereLight(0xFFFFFF, 0xAAAAAA, 0.8);
 		this.scene.add(ambient);
 			
-		// Create Renderer
-        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio( window.devicePixelRatio );
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
 		this.renderer.outputEncoding = THREE.sRGBEncoding;
 		container.appendChild( this.renderer.domElement );
-        
-        // Call set Environment method
         this.setEnvironment();
 	
-        // We add the method resize to the "resize" event called by the window
         window.addEventListener( 'resize', this.resize.bind(this) );
         
-
         this.clock = new THREE.Clock();
         this.up = new THREE.Vector3(0,1,0);
         this.origin = new THREE.Vector3();
@@ -64,12 +53,10 @@ class App{
         
 		this.loadingBar = new LoadingBar();
 		
-        // We load the glb model
 		this.loadCollege();
         
         const self = this;
         
-        //Fetch the college json file
         fetch('./college.json')
             .then(response => response.json())
             .then(obj =>{
@@ -78,7 +65,6 @@ class App{
             });
 	}
 	
-    // set Environment basically loads the 360 image
     setEnvironment(){
         const loader = new RGBELoader().setDataType( THREE.UnsignedByteType );
         const pmremGenerator = new THREE.PMREMGenerator( this.renderer );
@@ -97,7 +83,6 @@ class App{
         } );
     }
     
-    // resize rendering size  if window size changes
     resize(){
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
