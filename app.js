@@ -35,9 +35,34 @@ class App{
         this.scene.add( this.dolly );
         
         // Create Ambient Light
-		const ambient = new THREE.HemisphereLight(0xFFFFFF, 0xAAAAAA, 0.8);
+		const ambient = new THREE.HemisphereLight(0x000000, 0x000000, 1.0);
 		this.scene.add(ambient);
-			
+		
+        // Create Directional Light
+		const directional = new THREE.DirectionalLight(0xFFFFFF, 1.0);
+		this.scene.add(directional);
+
+        // Load background Texture
+         const textureloader = new THREE.TextureLoader().setPath(this.assetsPath);
+        const bgTexture = textureloader.load('Background.png');
+        this.scene.background = bgTexture; 
+
+        /* const loader = new THREE.TextureLoader();
+  const bgTexture = loader.load('https://r105.threejsfundamentals.org/threejs/resources/images/daikanyama.jpg');
+  scene.background = bgTexture; */
+  
+/*    const loader2 = new THREE.CubeTextureLoader();
+  const texture = loader2.load([
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-x.jpg',
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-x.jpg',
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-y.jpg',
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-y.jpg',
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-z.jpg',
+    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-z.jpg',
+  ]);
+  this.scene.background = texture;  */
+
+
 		// Create Renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
 		this.renderer.setPixelRatio( window.devicePixelRatio );
@@ -104,7 +129,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
     
-	loadCollege(){
+	 loadCollege(){
         
 		const loader = new GLTFLoader( ).setPath(this.assetsPath);
         const dracoLoader = new DRACOLoader();
@@ -116,14 +141,16 @@ class App{
 		// Load a glTF resource
 		loader.load(
 			// resource URL
-			'college.glb',
+			'Room.glb',
 			// called when the resource is loaded
 			function ( gltf ) {
 
-                const college = gltf.scene.children[0];
-				self.scene.add( college );
+                const room = gltf.scene.children[0];
+				//const material = new THREE.MeshStandardMaterial()
+                room.material =  new THREE.MeshStandardMaterial({color : 0xEBEBEB, roughness: 0.5, metalness: 0.0, emissive: 0x000000})
+                self.scene.add( room );
 				
-				college.traverse(function (child) {
+				room.traverse(function (child) {
     				if (child.isMesh){
 						if (child.name.indexOf("PROXY")!=-1){
 							child.material.visible = false;
@@ -140,13 +167,13 @@ class App{
 					}
 				});
                        
-                const door1 = college.getObjectByName("LobbyShop_Door__1_");
-                const door2 = college.getObjectByName("LobbyShop_Door__2_");
+                /* const door1 = room.getObjectByName("LobbyShop_Door__1_");
+                const door2 = room.getObjectByName("LobbyShop_Door__2_");
                 const pos = door1.position.clone().sub(door2.position).multiplyScalar(0.5).add(door2.position);
                 const obj = new THREE.Object3D();
                 obj.name = "LobbyShop";
                 obj.position.copy(pos);
-                college.add( obj );
+                room.add( obj ); */
                 
                 self.loadingBar.visible = false;
 			
@@ -165,8 +192,38 @@ class App{
 
 			}
 		);
-	}
+	} 
     
+
+    /* loadCollege(){
+
+        // Instantiate a loader
+        const loader = new GLTFLoader( ).setPath(this.assetsPath);
+
+            // Load a glTF resource
+        loader.load(
+        // resource URL
+        'college.glb',
+        // called when the resource is loaded
+        function ( gltf ) {
+
+            scene.add( gltf.scene );
+        },
+        // called while loading is progressing
+        function ( xhr ) {
+
+            console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+        },
+        // called when loading has errors
+        function ( error ) {
+
+            console.log( 'An error happened' );
+
+        }
+);
+
+    } */
     onMove( forward, turn ){
         if (this.dolly){
             this.dolly.userData.forward = forward;
@@ -179,6 +236,9 @@ class App{
 
         const self = this;
  
+
+        const btn = new VRButton( this.renderer, { vrStatus } );
+        
         function vrStatus( available ){
             if (available){
         
@@ -210,7 +270,7 @@ class App{
             }
         }
         
-        const btn = new VRButton( this.renderer, { vrStatus } );
+        
         
         const config = {
             panelSize: { height: 0.5 },
