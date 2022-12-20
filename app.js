@@ -42,21 +42,21 @@ class App{
 		const directional = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 		this.scene.add(directional);
 
-        // Load background Texture
+        /* // Load background Texture
          const textureloader = new THREE.TextureLoader().setPath(this.assetsPath);
         const bgTexture = textureloader.load('Background.png');
-        this.scene.background = bgTexture; 
+        this.scene.background = bgTexture;  */
   
-/*    const loader2 = new THREE.CubeTextureLoader();
+    const loader2 = new THREE.CubeTextureLoader().setPath(this.assetsPath);;
   const texture = loader2.load([
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-x.jpg',
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-x.jpg',
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-y.jpg',
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-y.jpg',
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/pos-z.jpg',
-    'https://r105.threejsfundamentals.org/threejs/resources/images/cubemaps/computer-history-museum/neg-z.jpg',
+    'XPos.png',
+    'XMin.png',
+    'YPos.png',
+    'YMin.png',
+    'ZPos.png',
+    'ZMin.png',
   ]);
-  this.scene.background = texture;  */
+  this.scene.background = texture;  
 
 
 		// Create Renderer
