@@ -46,10 +46,6 @@ class App{
          const textureloader = new THREE.TextureLoader().setPath(this.assetsPath);
         const bgTexture = textureloader.load('Background.png');
         this.scene.background = bgTexture; 
-
-        /* const loader = new THREE.TextureLoader();
-  const bgTexture = loader.load('https://r105.threejsfundamentals.org/threejs/resources/images/daikanyama.jpg');
-  scene.background = bgTexture; */
   
 /*    const loader2 = new THREE.CubeTextureLoader();
   const texture = loader2.load([
@@ -147,15 +143,17 @@ class App{
 
                 const room = gltf.scene.children[0];
 				//const material = new THREE.MeshStandardMaterial()
-                room.material =  new THREE.MeshStandardMaterial({color : 0xEBEBEB, roughness: 0.5, metalness: 0.0, emissive: 0x000000})
+                room.material =  new THREE.MeshStandardMaterial({color : 0xEBEBEB, roughness: 0.5, metalness: 0.0, emissive: 0x000000, side : THREE.DoubleSide})
                 self.scene.add( room );
 				
 				room.traverse(function (child) {
     				if (child.isMesh){
-						if (child.name.indexOf("PROXY")!=-1){
+						 if (child.name.indexOf("PROXY")!=-1){
 							child.material.visible = false;
 							self.proxy = child;
-						}else if (child.material.name.indexOf('Glass')!=-1){
+                            console.log("Wall found");
+						}                                               
+                         else if (child.material.name.indexOf('Glass')!=-1){
                             child.material.opacity = 0.1;
                             child.material.transparent = true;
                         }else if (child.material.name.indexOf("SkyBox")!=-1){
@@ -163,7 +161,7 @@ class App{
                             const mat2 = new THREE.MeshBasicMaterial({map: mat1.map});
                             child.material = mat2;
                             mat1.dispose();
-                        }
+                        } 
 					}
 				});
                        
