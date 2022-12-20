@@ -54,7 +54,7 @@ class App{
     'YPos.png',
     'YMin.png',
     'ZPos.png',
-    'Zmin.png',
+    'zMin.png',
   ]);
   this.scene.background = texture;  
 
