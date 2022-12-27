@@ -42,22 +42,17 @@ class App{
 		const directional = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 		this.scene.add(directional);
 
-        /* // Load background Texture
-         const textureloader = new THREE.TextureLoader().setPath(this.assetsPath);
-        const bgTexture = textureloader.load('Background.png');
-        this.scene.background = bgTexture;  */
-  
-    const loader2 = new THREE.CubeTextureLoader().setPath(this.assetsPath);;
-  const texture = loader2.load([
-    'XPos.png',
-    'XMin.png',
-    'YPos.png',
-    'YMin.png',
-    'ZPos.png',
-    'zMin.png',
-  ]);
-  this.scene.background = texture;  
-
+        // Load background Texture 
+        const loader = new THREE.CubeTextureLoader().setPath(this.assetsPath);;
+        const texture = loader.load([
+        'XPos.png',
+        'XMin.png',
+        'YPos.png',
+        'YMin.png',
+        'ZPos.png',
+        'zMin.png',
+        ]);
+        this.scene.background = texture;  
 
 		// Create Renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -72,7 +67,6 @@ class App{
         // We add the method resize to the "resize" event called by the window
         window.addEventListener( 'resize', this.resize.bind(this) );
         
-
         this.clock = new THREE.Clock();
         this.up = new THREE.Vector3(0,1,0);
         this.origin = new THREE.Vector3();
@@ -117,6 +111,8 @@ class App{
             console.error( 'An error occurred setting the environment');
         } );
     }
+    
+
     
     // resize rendering size  if window size changes
     resize(){

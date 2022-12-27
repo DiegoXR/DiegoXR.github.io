@@ -1,33 +1,65 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Lecture 6.4</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="../../css/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../css/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../css/favicon/favicon-16x16.png"> -->
-    <link rel="manifest" href="../../css/favicon/site.webmanifest">
-   <!--  <link rel="mask-icon" href="../../css/favicon/safari-pinned-tab.svg" color="#5bbad5"> -->
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- end favicon -->
-    <!-- <link type="text/css" rel="stylesheet" href="../../css/common.css"> -->
-    <style>
-        body{
-            margin: 0;
-            padding: 0;
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent('cursor-listenerr', {
+        init: function(){
+          console.log("init");
+          var newcolor = "green";
+                   
+          this.el.addEventListener("click",
+          function(e){
+            console.log("click");
+            this.setAttribute('material', 'color', newcolor);
+          });
+
+          this.el.addEventListener("mouseenter",
+          function(e){
+            console.log("mouse enter");
+            // Muestra informacion del objeto
+            console.log(e.detail.intersection.object);
+            // Muestra el punto de interseccion
+            console.log(e.detail.intersection.point);
+         
+            this.setAttribute('material', 'color', newcolor);
+          });
+
+          this.el.addEventListener("mouseleave",
+          function(e){
+            console.log("mouse leave");
+            this.setAttribute('material', 'color', "yellow");
+          });
         }
-    </style>
-</head>
-<body>
-    <script src="../../libs/fas.js"></script>
-	<script type="module">
-        import { App } from './app.js';
-        
-		document.addEventListener("DOMContentLoaded", function(){
-			const app = new App();
-			window.app = app;
-		});
-	</script>
-</body>
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene light = "defaultLightsEnabled: false"inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+      
+      <a-entity id="Ambient Light" light="color: #ccccff; type: ambient; castShadow: false" ></a-entity>
+      <a-entity id="Point Light" light="color: #bdbecb; decay: 0.36; distance: 10; type: point; castShadow: true"></a-entity>
+      
+      <a-sky color="#ECECEC"></a-sky> 
+
+      <a-entity camera look-controls position="0 1.6 0">
+        <a-cursor position = "0 0 -1" geometry = "primitive:ring; radiusInner:0.03; radiusOuter: 0.04"></a-cursor>
+      </a-entity>
+           
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cursor-listenerr></a-sphere>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      
+      
+      <a- assets>
+        <a-asset-item id="casa" src ="assets/Room.glb"></a-asset-item>
+      </a- assets>
+      <a-entity id = "Casita" position="0 -0.45 0" gltf-model="#casa"></a-entity>
+
+      <a-assets>
+        <a-asset-item id="tree" src="assets/elephant/scene.gltf"></a-asset-item>
+      </a-assets>   
+      <a-entity  id = "Elephant" gltf-model="#tree"></a-entity>
+
+    </a-scene>
+  </body>
 </html>
+
