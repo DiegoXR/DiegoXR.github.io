@@ -1,6 +1,11 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+    <!-- <script src="https://rawgit.com/c-frame/aframe-super-hands-component/master/dist/super-hands.js"></script> -->
+    <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+
     <script>
       AFRAME.registerComponent('cursor-listenerr', {
         init: function(){
@@ -51,13 +56,29 @@
       </a-entity>
            
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cursor-listenerr></a-sphere>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#00b3ff"></a-plane>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#636a31"></a-plane>
               
       <a-entity id = "Casita" position="0 -0.45 0" gltf-model="#casa"></a-entity> 
       <a-entity  id = "Elephant" gltf-model="#tree"></a-entity>
       
-      <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
-      <a-entity laser-controls="hand: left"  raycaster="lineColor: blue; lineOpacity: 0.5"></a-entity>
+
+      <!-- <a-entity laser-controls="hand: left"  raycaster="lineColor: blue; lineOpacity: 0.5"></a-entity> -->
+      <!-- <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity> -->
+      <!-- <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right; handModelStyle: lowPoly; color : #ffcccc"></a-entity>-->
+      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right" blink-controls></a-entity> 
+      <a-entity id="left-hand" oculus-touch-controls="hand: left" blink-controls></a-entity>
+
+
+      <a-box  grabbable  color="blue" position="0 0 -1"></a-box>
+      <!-- <a-box 
+        grabbable
+        hoverable
+        draggable
+        droppable   
+        position = "0 1 0"
+        color = "yellow"
+      ></a-box> -->
+      
     </a-scene>
   </body>
 </html>
