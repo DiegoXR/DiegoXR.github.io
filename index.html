@@ -54,6 +54,17 @@
       <a-entity camera look-controls position="0 1.6 0">
         <a-cursor position = "0 0 -1" geometry = "primitive:ring; radiusInner:0.03; radiusOuter: 0.04"></a-cursor>
       </a-entity>
+
+      <a-entity id="player">
+        <!-- camera -->
+        <a-entity id="camera" camera wasd-controls look-controls></a-entity>
+        <!-- hand controls -->
+        <!-- <a-entity laser-controls="hand: left"  raycaster="lineColor: blue; lineOpacity: 0.5"></a-entity> -->
+        <!-- <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity> -->
+        <!-- <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right; handModelStyle: lowPoly; color : #ffcccc"></a-entity>-->
+        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right" blink-controls></a-entity> 
+        <a-entity id="left-hand" oculus-touch-controls="hand: left" blink-controls></a-entity>
+      </a-entity>   
            
       <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cursor-listenerr></a-sphere>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#636a31"></a-plane>
@@ -62,11 +73,7 @@
       <a-entity  id = "Elephant" gltf-model="#tree"></a-entity>
       
 
-      <!-- <a-entity laser-controls="hand: left"  raycaster="lineColor: blue; lineOpacity: 0.5"></a-entity> -->
-      <!-- <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity> -->
-      <!-- <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right; handModelStyle: lowPoly; color : #ffcccc"></a-entity>-->
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right" blink-controls></a-entity> 
-      <a-entity id="left-hand" oculus-touch-controls="hand: left" blink-controls></a-entity>
+      
 
 
       <a-box  grabbable  color="blue" position="0 0 -1"></a-box>
