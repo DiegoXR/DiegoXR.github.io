@@ -1,1 +1,0 @@
-I load a glb file from the assets folder
