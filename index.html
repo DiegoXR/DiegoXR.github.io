@@ -7,7 +7,8 @@
   <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
   <script src="./scripts/CursorListenerComponent.js"></script>
   <script src="./scripts/AmbientSetter.js"></script>
-  <script src="./scripts/PlayerSetter.js"></script>
+  <!-- <script src="./scripts/TestPrimitive.js"></script> -->
+  <script src="./scripts/PlayerComponent.js"></script>
 </head>
 
 <body>
@@ -22,9 +23,11 @@
         src="https://awesomesaucelabs.github.io/piglet-webgl-demo/StreamingAssets/piggleston.glb"></a-asset-item>
     </a- assets>
  
-    <a-entity id="ambientPlaceHolder"> </a-entity>
-    
-    <a-entity id="playerPlaceHolder"> </a-entity>
+    <!-- HTML Content injected using the id -->
+    <a-entity id="ambientPlaceHolder"></a-entity>
+
+    <!-- Custom component used to add the camera and controls -->
+    <a-entity id = "xrPlayer" position = "0 0 2.43"create-xrplayer></a-entity>
 
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cursor-listener></a-sphere>
     <a-entity id="gallery" position="0 0 0" gltf-model="#gallery"></a-entity>

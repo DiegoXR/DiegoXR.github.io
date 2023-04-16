@@ -20,6 +20,5 @@ AFRAME.registerComponent('cursor-listener', {
                 console.log("mouse leave");
                 this.setAttribute('material', 'color', defaultColor);
             });
-
     }
 });
