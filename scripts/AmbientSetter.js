@@ -13,7 +13,7 @@ function preLoadAssets() {
 }
 
 function setSky(elem) {
-    elem.innerHTML +=  `<a-sky color="#ECECEC" material="color: blue"></a-sky>`
+    elem.innerHTML +=  `<a-sky  src="#sky"></a-sky>`
 }
 
 function setLighting(elem) {
