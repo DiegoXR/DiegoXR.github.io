@@ -1,18 +1,21 @@
+// Add this component to an object if you want the object to change color when the cursor is hovering on the object
+
 AFRAME.registerComponent('cursor-listener', {
     init: function () {
         console.log("init");
         var hoverColor = "green";
-        var defaultColor = "red";
+        var defaultColor ;
 
         this.el.addEventListener("mouseenter",
             function (e) {
                 console.log("mouse enter");
-                // Muestra informacion del objeto
+                // Show Object Information
                 console.log(e.detail.intersection.object);
-                // Muestra el punto de interseccion
+                // Muestra Point of Intersection
                 console.log(e.detail.intersection.point);
-
-                this.setAttribute('material', 'color', hoverColor);
+                // Retrieve the color attribute from the scheme
+                defaultColor = this.data.color;                
+                this.setAttribute('material', 'color', hoverColor);                                      
             });
 
         this.el.addEventListener("mouseleave",
@@ -22,3 +25,4 @@ AFRAME.registerComponent('cursor-listener', {
             });
     }
 });
+
