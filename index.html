@@ -9,6 +9,9 @@
   <script src="./scripts/AmbientSetter.js"></script>
   <!-- <script src="./scripts/TestPrimitive.js"></script> -->
   <script src="./scripts/PlayerComponent.js"></script>
+  <script src="./scripts/GltfLoaderComponent.js"></script>
+  <script src="./scripts/GLTFHoverColorChangerComponent.js"></script>
+
 </head>
 
 <body>
@@ -29,13 +32,9 @@
 
     <!-- Custom component used to add the camera and controls -->
     <a-entity id = "xrPlayer" position = "0 0 2.43"create-xrplayer></a-entity>
-
-    <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" cursor-listener></a-sphere>
     <a-entity id="gallery" position="0 0 0" gltf-model="#gallery"></a-entity>
-    <a-entity id="pig" visible="true" position="1.18033 0.72734 2.45728" scale="0.22673 0.22673 0.22673"
-      rotation="0 1.9658181950938545 0" gltf-model="#pig"></a-entity>
-    <a-entity id="ted" position="0 0 1.5" gltf-model="#ted"></a-entity>
-    <a-box grabbable color="blue" position="0 0 -1"></a-box>
+    <a-entity id="pig" visible="true" position="1.18 0.72 2.45" scale="0.22 0.22 0.22"rotation="0 1.96 0" gltf-model="#pig"></a-entity>
+    <a-entity id="ted" position="0 0 1.5" gltf-model="#ted" grabbable colorchanger></a-entity>
 
   </a-scene>
 </body>
