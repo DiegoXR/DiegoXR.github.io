@@ -11,24 +11,3 @@ AFRAME.registerComponent('ambient-music', {
       });
     }
   });
-  
-
-//   AFRAME.registerComponent('hover-sound', {
-//     schema: {
-//       src: {type: 'string'}
-//     },
-//     dependencies: ['sound'], 
-//     init: function () {
-//       var el = this.el;
-//       var data = this.data;
-//       //var sound = new Audio(data.src);
-//       var sound = this.el.components.sound;
-//       el.addEventListener('mouseenter', function () {
-//         sound.playSound();
-//       });
-//       el.addEventListener('mouseleave', function () {
-//         sound.stopSound();
-//         sound.currentTime = 0;
-//       });
-//     }
-//   });
