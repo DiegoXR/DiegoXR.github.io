@@ -1,8 +1,6 @@
-AFRAME.registerComponent('create-xrplayer', {
+AFRAME.registerComponent('player', {
   init: function () {
     
-    console.log("Creating xr player");
-
       // Camera
       let camera = document.createElement('a-entity');
       camera.setAttribute('camera', { });
@@ -31,16 +29,18 @@ AFRAME.registerComponent('create-xrplayer', {
       leftControl.setAttribute('super-hands', { });
       leftControl.setAttribute('blink-controls', { });
       leftControl.setAttribute('sphere-collider', { objects: 'a-box'});
-      leftControl.setAttribute('hand-controls', { hand: 'right'});
-      controlsParent.appendChild(leftControl);
+      leftControl.setAttribute('oculus-touch-controls', { hand: 'left'});
+      // leftControl.setAttribute('hand-controls', { hand: 'left'});
+      this.el.appendChild(leftControl);
 
       // Right Control
       let rightControl = document.createElement('a-entity');
       rightControl.setAttribute('id', "rightControl");
-      rightControl.setAttribute('super-hands', { });
-      rightControl.setAttribute('blink-controls', { });
-      rightControl.setAttribute('sphere-collider', { objects: 'a-box'});
-      rightControl.setAttribute('hand-controls', { hand: 'left'});
-      controlsParent.appendChild(rightControl);
+      rightControl.setAttribute('super-hands', { }); // Interaction features such as grab, hover, squezze
+      rightControl.setAttribute('blink-controls', { }); // Teleporting Features
+      rightControl.setAttribute('sphere-collider', { objects: 'a-box'}); // Required for super-hands feature
+      rightControl.setAttribute('oculus-touch-controls', { hand: 'right'});
+      // rightControl.setAttribute('hand-controls', { hand: 'right'}); // 3D Model of hand that animates with control inputs
+      this.el.appendChild(rightControl);
   }
 });
