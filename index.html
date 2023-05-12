@@ -11,6 +11,7 @@
   <script src="./scripts/PlayerComponent.js"></script>
   <script src="./scripts/GltfLoaderComponent.js"></script>
   <script src="./scripts/GLTFHoverColorChangerComponent.js"></script>
+  <script src="./scripts/HoverSoundComponent.js"></script>
 
 </head>
 
@@ -25,6 +26,8 @@
       <a-asset-item id="pig"
         src="https://awesomesaucelabs.github.io/piglet-webgl-demo/StreamingAssets/piggleston.glb"></a-asset-item>
       <a-asset-item id="sky" src="assets/sky.png"></a-asset-item>
+      <audio id="ambientSound" src="assets/AmbientSound.mp3" preload="auto"></audio>
+      <audio id="punchSound" src="assets/PunchSound.mp3" preload="auto"></audio>
     </a- assets>
  
     <!-- HTML Content injected using the id -->
@@ -32,10 +35,11 @@
 
     <!-- Custom component used to add the camera and controls -->
     <a-entity id = "xrPlayer" position = "0 0 2.43"create-xrplayer></a-entity>
+    
     <a-entity id="gallery" position="0 0 0" gltf-model="#gallery"></a-entity>
     <a-entity id="pig" visible="true" position="1.18 0.72 2.45" scale="0.22 0.22 0.22"rotation="0 1.96 0" gltf-model="#pig"></a-entity>
-    <a-entity id="ted" position="0 0 1.5" gltf-model="#ted" grabbable colorchanger></a-entity>
-
+    <a-entity id="ted" position="0 0 1.5" gltf-model="#ted" grabbable colorchanger sound="src: #punchSound; loop : true" hover-sound></a-entity>
+    <a-entity hoverable position="0 0.6 4.6" scale="1.5 0.5 0.5" material="transparent: true; opacity: 0.5; side: double"geometry="primitive: box" sound="src: #ambientSound; loop : true; on: click" ambient-music></a-entity>
   </a-scene>
 </body>
 

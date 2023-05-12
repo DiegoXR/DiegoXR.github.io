@@ -19,15 +19,6 @@ AFRAME.registerComponent('gltf-loader', {
             node.material.color.set('#00ff00');
           }
         });
-
-        // // Get the color of all materials
-        // model.traverse(function (node) {
-        //     console.log(node);
-        // });
-
-
-
-
       });
     }
   });
