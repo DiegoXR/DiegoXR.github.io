@@ -1,0 +1,72 @@
+<html>
+
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
+  <script src="https://unpkg.com/super-hands/dist/super-hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+  <script src="./scripts/CursorListenerComponent.js"></script>
+  <script src="./scripts/AmbientSetter.js"></script>
+  <script src="./scripts/PlayerComponent.js"></script>
+  <script src="./scripts/GltfLoaderComponent.js"></script>
+  <script src="./scripts/GLTFHoverColorChangerComponent.js"></script>
+  <script src="./scripts/HoverSoundComponent.js"></script>
+
+</head>
+
+<body>
+  <a-scene class="Scene" light="defaultLightsEnabled: false"
+    inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
+    gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/">
+
+    <a- assets>
+      <a-asset-item id="gallery" src="assets/gallery.glb"></a-asset-item>
+      <a-asset-item id="ted" src="assets/ted.glb"></a-asset-item>
+      <a-asset-item id="pig"
+        src="https://awesomesaucelabs.github.io/piglet-webgl-demo/StreamingAssets/piggleston.glb"></a-asset-item>
+      <a-asset-item id="sky" src="assets/sky.png"></a-asset-item>
+      <audio id="ambientSound" src="assets/AmbientSound.mp3" preload="auto"></audio>
+      <audio id="punchSound" src="assets/PunchSound.mp3" preload="auto"></audio>
+      <a-asset-item id="lucyLab" src="assets/LucyLab.glb"></a-asset-item>
+    </a- assets>
+ 
+    <!-- HTML Content injected using the id -->
+     <a-entity id="ambientPlaceHolder"></a-entity>
+
+    <!-- Custom component used to add the camera and controls -->
+    <a-entity id = "player" position = "0 0 2.43" player></a-entity> 
+
+    <a-entity id="gallery" position="0 0 0" gltf-model="#gallery"></a-entity> 
+    <a-entity id="pig" visible="true" position="1.18 0.72 2.45" scale="0.22 0.22 0.22"rotation="0 1.96 0" gltf-model="#pig"></a-entity>
+    <a-entity id="ted" position="0 0 1.5" gltf-model="#ted" grabbable colorchanger sound="src: #punchSound; loop : true" hover-sound></a-entity>
+    <a-entity hoverable position="0 0.6 4.6" scale="1.5 0.5 0.5" material="transparent: true; opacity: 0.5; side: double"geometry="primitive: box" sound="src: #ambientSound; loop : true; on: click" ambient-music></a-entity>
+    <a-text value="Now Interactable" geometry="primitive:plane"></a-text> 
+    <a-entity id="lucyLab" position="0 0 0" gltf-model="#lucyLab"></a-entity> 
+  </a-scene> 
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+<!-- url: https://www.dropbox.com/scl/fo/pv364cojssa2gy8x4xt07/h?dl=0&rlkey=iaie9hawa1g6bb4t38p0uamg4/tileset.json;  -->
+
+<!-- url : https://int.nyt.com/data/3dscenes/ONA360/TILESET/0731_FREEMAN_ALLEY_10M_A_36x8K__10K-PN_50P_DB/tileset_tileset.json; -->
+
+<!-- file:///C:/Users/diego/Desktop/WebProjects/CesiumAframe/Assets/16057/tileset.json -->
+
+<!-- https://1drv.ms/f/s!AiyZZquV42RPgZYCSJ3VxKmzk8wiIw?e=bXckh7/16057/tileset.json-->
+
+<!-- https://diegofirstbucket.s3.us-east-2.amazonaws.com/16057/ -->
+
+
+<!-- s3://diegofirstbucket/16057/tileset.json -->
+
+
+<!-- https://beta.cesium.com/api/assets/1817970?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlODUzNDdmNi03M2EzLTQ4ZmUtYjk2My04NDZhNGYwZDcwOTUiLCJpZCI6MTQ1OTY2LCJpYXQiOjE2ODY0MDI4ODZ9.yUPn1jhoGNmn65imxbRvDiV3K0VTM-aVBGL4kQYZ0Ks -->
