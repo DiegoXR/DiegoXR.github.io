@@ -1,3 +1,12 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port":5500,
+    "liveServer.settings.root":"/",
+
+
+    "liveServer.settings.https": {
+    "enable": true, //set it true to enable the feature.
+    "cert": "C:\\Users\\diego\\Desktop\\WebXRProjects\\OpenSSLContainer\\localhost.pem", //full path of the certificate
+    "key": "C:\\Users\\diego\\Desktop\\WebXRProjects\\OpenSSLContainer\\localhost.key", //full path of the private key
+    "passphrase": "diego es lindo"
+    }
 }
